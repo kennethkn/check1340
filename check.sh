@@ -1,23 +1,22 @@
 #!/usr/bin/env bash
 
 # Author: kennethkn
-# Last updated: 2023-03-19
+# Last updated: 2023-03-20
 
 # Description:
-# - Designed for ENGG1340/COMP2113
-# - Checks your answers against assignment testcases
-# - Supports questions with input via stdin (<input2_1.txt) or arguments (./main2 [argument1] [argument2] ...)
+# - Designed for ENGG1340/COMP2113 (Class of 2026)
+# - Checks your answers against assignment test cases
 # - Tested up to ASM2
 # - Feel free to create pull requests
 
 # Usage: ./check.sh [-v]
 # -v  OPTIONAL. Show the output of diff.
 
-# IMPORTANT: If the question uses arguments for input, please enter the arguments for each testcase below.
+# IMPORTANT: If the question uses arguments for input, please enter the arguments for each test case below.
 # (If you got an error about missing arguments, here's where you fix it)
 args=(
-    # "testcase1 arguments"
-    # "testcase2 arguments"
+    # "test case 1 arguments"
+    # "test case 2 arguments"
     # ...
     #
     # ASM2 Q2 Preset (Uncomment the below to use)
@@ -31,6 +30,10 @@ args=(
 main() {
     if [[ $# -gt 1 || ($# == 1 && $1 != -v) ]]; then
         echo Usage: ./check.sh [-v]
+        exit 1
+    fi
+    if ! ls -- *.cpp >/dev/null 2>&1; then
+        echo Error: no .cpp file found in the current directory. Wrong directory?
         exit 1
     fi
 
@@ -74,7 +77,7 @@ clean:
     # Checking
     if ! ls input*.txt >/dev/null 2>&1; then
         if [[ ${#args[@]} == 0 ]]; then
-            echo Error: no argument provided for "$target". Please copy input arguments from the testcases to this script.
+            echo Error: no argument provided for "$target". Please copy input arguments from the test cases to this script.
             exit 1
         fi
         if [[ $vb == true ]]; then seperator; fi
