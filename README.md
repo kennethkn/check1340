@@ -6,7 +6,7 @@ Automated tool for checking ENGG1340/COMP2113 assignment solutions against test 
 
 * Designed for ENGG1340/COMP2113 (Class of 2026)
 * Checks your answers against assignment test cases
-* Tested up to ASM2
+* Tested up to ASM3
 * Feel free to contribute
 
 ## :hammer_and_wrench: Requirement
@@ -31,6 +31,9 @@ The bash shell (duh)
    │   ├── Q1
    │   ├── Q2
    │   └── Q3
+   ├── A3_Files
+   │   ├── Q1
+   │   └── Q2
    ├── check.sh
    └── sync.sh
    ```
