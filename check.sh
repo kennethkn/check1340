@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 # Author: kennethkn
-# Last updated: 2023-03-20
+# Last updated: 2023-04-15
 
 # Description:
 # - Designed for ENGG1340/COMP2113 (Class of 2026)
 # - Checks your answers against assignment test cases
-# - Tested up to ASM2
+# - Tested up to ASM3
 # - Feel free to create pull requests
 
 # Usage: ./check.sh [-v]
@@ -32,8 +32,20 @@ main() {
         echo Usage: ./check.sh [-v]
         exit 1
     fi
-    if ! ls -- *.cpp >/dev/null 2>&1; then
-        echo Error: no .cpp file found in the current directory. Wrong directory?
+    if ls -- *.c >/dev/null 2>&1; then
+        ext=c
+        compiler_var=CC
+        flags_var=CFLAGS
+        compiler=gcc
+        std=c11
+    elif ls -- *.cpp >/dev/null 2>&1; then
+        ext=cpp
+        compiler_var=CXX
+        flags_var=CXXFLAGS
+        compiler=g++
+        std=c++11
+    else
+        echo Error: no .c or .cpp file found in the current directory. Wrong directory?
         exit 1
     fi
 
@@ -41,29 +53,29 @@ main() {
     if [[ $1 == -v ]]; then vb=true; else vb=false; fi
 
     # Makefile generation & initialize $target for later use
-    src_arr=(*.cpp)
+    src_arr=(*."$ext")
     if [[ ${#src_arr[@]} == 1 ]]; then
         src="${src_arr[*]}"
-        target=${src%.cpp}
-        echo "CXX = g++
-CXXFLAGS = -pedantic-errors -std=c++11
+        target=${src%."$ext"}
+        echo "$compiler_var = $compiler
+$flags_var = -pedantic-errors -std=$std
 
 $target: $src
-	\$(CXX) \$(CXXFLAGS) -o \$@ \$<
+	\$($compiler_var) \$($flags_var) -o \$@ \$<
 
 .PHONY: clean	
 clean:
 	rm -f $target" >Makefile
     else
         src="${src_arr[*]}"
-        src=${src//.cpp/.o}
-        main_cpp=$(echo main*.cpp)
-        target=${main_cpp%.cpp}
-        echo "CXX = g++
-CXXFLAGS = -pedantic-errors -std=c++11
+        src=${src//.$ext/.o}
+        main_cpp=$(echo main*.$ext)
+        target=${main_cpp%."$ext"}
+        echo "$compiler_var = $compiler
+$flags_var = -pedantic-errors -std=$std
 
 $target: $src
-	\$(CXX) \$(CXXFLAGS) -o \$@ \$^
+	\$($compiler_var) \$($flags_var) -o \$@ \$^
 
 .PHONY: clean	
 clean:
@@ -72,7 +84,10 @@ clean:
 
     # Remake everything
     make clean
-    make "$target"
+    make "$target" || {
+        echo "Error: compilation failed. Script aborting..."
+        exit 1
+    }
 
     # Checking
     if ! ls input*.txt >/dev/null 2>&1; then
