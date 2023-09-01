@@ -12,12 +12,12 @@ Automated tool for checking ENGG1340/COMP2113 assignment solutions against test 
 ## :hammer_and_wrench: Requirement
 
 The bash shell (duh)
-  
+
 > Tested to work on `GNU bash, version 5.2.15(1)-release (aarch64-apple-darwin22.1.0)`
 >
 > May or may not work on older versions of bash
 
-## :zap: Setup
+## :gear: Setup
 
 1. Download `check.sh` `sync.sh` and put them in a folder containing all assignments, as demostrated below:
 
