@@ -4,15 +4,13 @@
 # Last updated: 2023-04-15
 
 # Description:
-# - Designed for ENGG1340/COMP2113 (Class of 2026)
-# - Checks your answers against assignment test cases
-# - Tested up to ASM3
-# - Feel free to create pull requests
+# - Run all test cases available for a problem with a single command.
+# - For ENGG1340/COMP2113 students (22-23 semester 2).
 
 # Usage: ./check.sh [-v]
 # -v  OPTIONAL. Show the output of diff.
 
-# IMPORTANT: If the question uses arguments for input, please enter the arguments for each test case below.
+# IMPORTANT: If the problem uses arguments for input, please enter the arguments for each test case below.
 # (If you got an error about missing arguments, here's where you fix it)
 args=(
     # "test case 1 arguments"
@@ -63,7 +61,7 @@ $flags_var = -pedantic-errors -std=$std
 $target: $src
 	\$($compiler_var) \$($flags_var) -o \$@ \$<
 
-.PHONY: clean	
+.PHONY: clean
 clean:
 	rm -f $target" >Makefile
     else
@@ -77,7 +75,7 @@ $flags_var = -pedantic-errors -std=$std
 $target: $src
 	\$($compiler_var) \$($flags_var) -o \$@ \$^
 
-.PHONY: clean	
+.PHONY: clean
 clean:
 	rm -f $target *.o" >Makefile
     fi

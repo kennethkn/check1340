@@ -1,44 +1,39 @@
-# :star2: check1340
+# check1340
 
-Automated tool for checking ENGG1340/COMP2113 assignment solutions against test cases
+Run all test cases available for a problem with a single command. For ENGG1340/COMP2113 students (22-23 semester 2).
 
-## :rocket: Quick Overview
+Avoid the hassle of running each test case one by one and comparing the output with the expected output. This script does it all for you.
 
-* Designed for ENGG1340/COMP2113 (Class of 2026)
-* Checks your answers against assignment test cases
-* Tested up to ASM3
-* Feel free to contribute
+## Prerequisite
 
-## :hammer_and_wrench: Requirement
+Any shell
 
-The bash shell (duh)
-
-> Tested to work on `GNU bash, version 5.2.15(1)-release (aarch64-apple-darwin22.1.0)`
+> Tested to work on `zsh 5.9 (x86_64-apple-darwin23.0)`
 >
-> May or may not work on older versions of bash
+> Should work on bash shell too
 
-## :gear: Setup
+## Setup
 
-1. Download `check.sh` `sync.sh` and put them in a folder containing all assignments, as demostrated below:
+1. Download `check.sh` `sync.sh` and put them in the folder containing all your assignments. The folder structure should look like this:
 
    ```text
-   your-asm-folder
-   ├── A1_Files
+   folder-containing-all-assignments
+   ├── A1_files
    │   ├── Q1
    │   ├── Q2
    │   └── Q3
-   ├── A2_Files
+   ├── A2_files
    │   ├── Q1
    │   ├── Q2
    │   └── Q3
-   ├── A3_Files
+   ├── A3_files
    │   ├── Q1
    │   └── Q2
-   ├── check.sh
-   └── sync.sh
+   ├── check.sh <- here
+   └── sync.sh <- here
    ```
 
-   Using `curl` (navigate to your assignment folder first):
+   Via `curl` (navigate to folder-containing-all-assignments first):
 
    ```bash
    curl -o check.sh https://raw.githubusercontent.com/kennethkn/check1340/main/check.sh
@@ -52,7 +47,7 @@ The bash shell (duh)
    chmod u+x sync.sh
    ```
 
-3. Run `sync.sh` to deploy `check.sh` to all valid subfolders:
+3. Run `sync.sh` to deploy `check.sh` to every problem folder
 
     ```bash
     ./sync.sh
@@ -69,7 +64,7 @@ The bash shell (duh)
    )
    ```
 
-## :computer: Usage
+## Usage
 
 ```bash
 ./check.sh [-v]
@@ -77,8 +72,8 @@ The bash shell (duh)
 -v  OPTIONAL. Show the output of diff.
 ```
 
-## :handshake: Contributing
+## Contributing
 
-Contributions to this script are welcome. If you find any bugs or have suggestions for improvement, please feel free to create a pull request.
+Feel free to contribute by opening an issue or a pull request.
 
- *p.s. I finally have a repo on my account, yay!*
+ *Fun fact: This is my first ever repo!*
