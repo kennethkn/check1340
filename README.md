@@ -1,6 +1,6 @@
 # check1340
 
-Run all test cases available for a problem with a single command. For ENGG1340/COMP2113 students (22-23 semester 2).
+Run all test cases available for a problem with a single command. For ENGG1340/COMP2113 students (22-23 spring).
 
 Avoid the hassle of running each test case one by one and comparing the output with the expected output. This script does it all for you.
 
